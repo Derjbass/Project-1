@@ -12,6 +12,17 @@ $('button').on('click', function(event){
 
 })
 
+//function to make API call
 function fetchData(movie){
+    return;
+}
+
+//function to store needed retrieved data
+function storeData(data){
+    return;
+}
+
+//function to display data
+function displayData(toDisplay){
     return;
 }
