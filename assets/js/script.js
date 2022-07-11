@@ -7,6 +7,7 @@ $('button').on('click', function(event){
   
     //add input field value to variable for fetch later
     movieName = $('input').val();
+    console.log(movieName);
 
     fetchData(movieName);
 
@@ -26,3 +27,4 @@ function storeData(data){
 function displayData(toDisplay){
     return;
 }
+//test comment
