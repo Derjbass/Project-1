@@ -1,9 +1,12 @@
-var movieName;
+var movieName, trailerId;
+const ytApiKey = 'AIzaSyAKW-rzHMOU-ibu6PVKf5Swwy0W9cptcEY';
 
 //search button listener
-$('button').on('click', function(event){
+$('#btn').on('click', function(event){
     //stop page refresh when search button is clicked
     event.preventDefault();
+
+    //loadClient().then(fetchData(movieName));
   
     //add input field value to variable for fetch later
     movieName = $('input').val();
@@ -14,17 +17,31 @@ $('button').on('click', function(event){
 })
 
 //function to make API call
-function fetchData(movie){
-    return;
+async function fetchData(movie){
+    console.log("Ready to get Youtube data!");
+  const url = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+
+  storeData(data);
+
+  return data;
 }
+
 
 //function to store needed retrieved data
 function storeData(data){
-    return;
+    trailerId = data.items[0].id.videoId
+    console.log('https://www.youtube.com/watch?v=' + trailerId);
+    return console.log(data.items[0].id.videoId);
 }
 
 //function to display data
 function displayData(toDisplay){
     return;
 }
-//test comment
+
+
+
