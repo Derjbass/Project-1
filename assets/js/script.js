@@ -13,11 +13,6 @@ $('#btn').on('click', function (event) {
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
-<<<<<<< HEAD
-    //console.log(movieName);
-=======
->>>>>>> main
-
     fetchMovieData(movieName);
     // fetchYtData(movieName);
 
@@ -32,10 +27,10 @@ async function fetchMovieData(movie) {
     const ottData = await ottResponse.json();
     //filter out movies that don't match the first word or first and second word
     const filteredMovies = ottData.results.filter(function (movie){
-        console.log(movieName.split(' ').length - 1);
+        // console.log(movieName.split(' ').length - 1);
         //console.log(movieName.split(' ')[movie.title.split(' ').length - 1].toLowerCase());
         if(movie.title.split(' ')[0].toLowerCase() === movieName.split(' ')[0].toLowerCase() && movie.title.split(' ')[movieName.split(' ').length - 1].toLowerCase() === movieName.split(' ')[movieName.split(' ').length - 1].toLowerCase()){
-            console.log('movie.title.length', movie.title.split(' ').length - 1);
+            // console.log('movie.title.length', movie.title.split(' ').length - 1);
             return movie;
         }else if(movie.title.split(' ')[0].toLowerCase() === movieName.split(' ')[0].toLowerCase()){
             return movie;
@@ -45,23 +40,19 @@ async function fetchMovieData(movie) {
     //get IDs for full array
     for (i = 0; i < filteredMovies.length; i++){
         imdbID[i] = filteredMovies[i].imdbid;
-        console.log(imdbID);
+        // console.log(imdbID);
     }
     
 
-    console.log(filteredMovies);
+    // console.log(filteredMovies);
 
-    storeOttData(ottData);
+    storeOttData(filteredMovies);
 }
 async function fetchYtData(movie) {
     const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
 
     const ytResponse = await fetch(ytUrl);
     const ytData = await ytResponse.json();
-<<<<<<< HEAD
-    //console.log(ytData);
-=======
->>>>>>> main
 
     storeYtData(ytData);
 
@@ -73,33 +64,29 @@ async function fetchYtData(movie) {
 
 
 //function to store needed retrieved data
-function storeOttData(ottData) {
-    displayData(ottData);
+function storeOttData(filteredMovies) {
+    console.log(filteredMovies);
+    displayData(filteredMovies);
 }
 
 function storeYtData(ytData) {
     trailerId = ytData.items[0].id.videoId
-<<<<<<< HEAD
     //console.log('https://www.youtube.com/watch?v=' + trailerId);
     //return console.log(ytData.items[0].id.videoId);
-=======
-    // console.log('https://www.youtube.com/watch?v=' + trailerId);
-    // return console.log(ytData.items[0].id.videoId);
->>>>>>> main
 }
 
 //function to display data
-function displayData(ottData) {
-    console.log(ottData);
+function displayData(filteredMovies) {
+    console.log(filteredMovies);
 
-    for (var i = 0; i < ottData.results.length; i++) {
-        console.log(i);
-        var title = ottData.results[i].title;
+    for (var i = 0; i < filteredMovies.length; i++) {
+        // console.log(i);
+        var title = filteredMovies[i].title;
         // var poster = ottData.results[i].imageurl[0];
         var imdb = 'test';
 
         try {
-            var poster = ottData.results[i].imageurl[0]
+            var poster = filteredMovies[i].imageurl[0]
         } catch (error) {
             var poster = '#';
         }
@@ -111,8 +98,8 @@ function displayData(ottData) {
             <h3>IMDB Rating: ${imdb}</h3>
         </div>`)
 
-        console.log(title);
-        console.log(poster);
+        // console.log(title);
+        // console.log(poster);
     }
     
 }
