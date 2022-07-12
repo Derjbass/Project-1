@@ -13,10 +13,6 @@ $('#btn').on('click', function (event) {
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
-<<<<<<< HEAD
-    //console.log(movieName);
-=======
->>>>>>> main
 
     fetchMovieData(movieName);
     // fetchYtData(movieName);
@@ -58,10 +54,6 @@ async function fetchYtData(movie) {
 
     const ytResponse = await fetch(ytUrl);
     const ytData = await ytResponse.json();
-<<<<<<< HEAD
-    //console.log(ytData);
-=======
->>>>>>> main
 
     storeYtData(ytData);
 
@@ -79,13 +71,8 @@ function storeOttData(ottData) {
 
 function storeYtData(ytData) {
     trailerId = ytData.items[0].id.videoId
-<<<<<<< HEAD
-    //console.log('https://www.youtube.com/watch?v=' + trailerId);
-    //return console.log(ytData.items[0].id.videoId);
-=======
     // console.log('https://www.youtube.com/watch?v=' + trailerId);
     // return console.log(ytData.items[0].id.videoId);
->>>>>>> main
 }
 
 //function to display data
@@ -101,18 +88,16 @@ function displayData(ottData) {
         try {
             var poster = ottData.results[i].imageurl[0]
         } catch (error) {
-            var poster = '#';
+            var poster = './assets/images/no-image-icon-23500.jpg';
         }
 
-        $(".movie-card").append(
-        `<div class="text-center">
+        $("#display-results-here").append(
+        `<div class="text-center movie-card">
             <h2>${title}</h2>
             <img src="${poster}" alt="${title}" width="250" height="300">
             <h3>IMDB Rating: ${imdb}</h3>
         </div>`)
 
-        console.log(title);
-        console.log(poster);
     }
     
 }
