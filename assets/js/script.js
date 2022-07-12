@@ -1,8 +1,8 @@
-var movieName, trailerId;
+var movieName, trailerId, video;
 var imdbID = [];
 var ytLink = 'https://www.youtube.com/watch?v=';
 const ytApiKey = 'AIzaSyAKW-rzHMOU-ibu6PVKf5Swwy0W9cptcEY';
-const ottApiKey = '7c8e1ebcafmsh714464ccf2b4b99p19981bjsnbf6b11fcce3e'
+const ottApiKey = '3ddad456f1msh0fd6c81a3fb6472p195307jsn56362d1f8c52'
 
 //search button listener
 $('#btn').on('click', function (event) {
@@ -13,12 +13,9 @@ $('#btn').on('click', function (event) {
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
-<<<<<<< HEAD
-
-=======
->>>>>>> f6bd49fa2a95b372bb0773832f535d73b5623d67
+    fetchYtData(movieName);
     fetchMovieData(movieName);
-    // fetchYtData(movieName);
+    
 
 
 })
@@ -73,17 +70,14 @@ function storeOttData(filteredMovies) {
     displayData(filteredMovies);
 }
 
-function storeYtData(ytData) {
+async function storeYtData(ytData) {
     trailerId = ytData.items[0].id.videoId
-<<<<<<< HEAD
-    // console.log('https://www.youtube.com/watch?v=' + trailerId);
-    // return console.log(ytData.items[0].id.videoId);
-=======
-    //console.log('https://www.youtube.com/watch?v=' + trailerId);
-    //return console.log(ytData.items[0].id.videoId);
->>>>>>> f6bd49fa2a95b372bb0773832f535d73b5623d67
-}
+    video = `https://www.youtube.com/watch?v=${trailerId}`;
+    console.log(video);
 
+    //return console.log(ytData.items[0].id.videoId);
+}
+console.log(video);
 //function to display data
 function displayData(filteredMovies) {
     console.log(filteredMovies);
@@ -105,13 +99,11 @@ function displayData(filteredMovies) {
             <h2>${title}</h2>
             <img src="${poster}" alt="${title}" width="250" height="300">
             <h3>IMDB Rating: ${imdb}</h3>
+            <iframe width="420" height="315" src="${video}"></iframe>
         </div>`)
 
-<<<<<<< HEAD
-=======
         // console.log(title);
         // console.log(poster);
->>>>>>> f6bd49fa2a95b372bb0773832f535d73b5623d67
     }
     
 }
