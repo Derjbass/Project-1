@@ -1,4 +1,5 @@
 var movieName, trailerId;
+var ytLink = 'https://www.youtube.com/watch?v=';
 const ytApiKey = 'AIzaSyAKW-rzHMOU-ibu6PVKf5Swwy0W9cptcEY';
 
 //search button listener
@@ -34,7 +35,7 @@ async function fetchData(movie){
 //function to store needed retrieved data
 function storeData(data){
     trailerId = data.items[0].id.videoId
-    console.log('https://www.youtube.com/watch?v=' + trailerId);
+    console.log(ytLink + trailerId);
     return console.log(data.items[0].id.videoId);
 }
 
