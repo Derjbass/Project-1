@@ -1,8 +1,9 @@
 var movieName, trailerId;
 var imdbID = [];
+var imdbRating = [];
 var ytLink = 'https://www.youtube.com/watch?v=';
 const ytApiKey = 'AIzaSyAKW-rzHMOU-ibu6PVKf5Swwy0W9cptcEY';
-const ottApiKey = '7c8e1ebcafmsh714464ccf2b4b99p19981bjsnbf6b11fcce3e'
+const ottApiKey = '3ddad456f1msh0fd6c81a3fb6472p195307jsn56362d1f8c52'
 
 //search button listener
 $('#btn').on('click', function (event) {
@@ -35,7 +36,7 @@ async function fetchMovieData(movie) {
         }else if(movie.title.split(' ')[0].toLowerCase() === movieName.split(' ')[0].toLowerCase()){
             return movie;
         }
-    }).slice(0,10);
+    }).slice(0,3);
 
     //get IDs for full array
     for (i = 0; i < filteredMovies.length; i++){
@@ -48,6 +49,7 @@ async function fetchMovieData(movie) {
 
     storeOttData(filteredMovies);
 }
+
 async function fetchYtData(movie) {
     const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
 
@@ -57,6 +59,18 @@ async function fetchYtData(movie) {
     storeYtData(ytData);
 
     return ytData;
+}
+
+async function fetchImbdData(filteredMovies) {
+    for (let i = 0; i < filteredMovies.length; i++) {
+        let imbdIDUrl = `https://ott-details.p.rapidapi.com/gettitleDetails?rapidapi-key=${ottApiKey}&imdbid=${filteredMovies[i]}`;
+        let imdbIDResponse = await fetch(imbdIDUrl);
+        let imdbData = await imdbIDResponse.json();
+
+        imdbRating[i] = imdbData.imdbrating;
+    }
+
+
 }
 
 
@@ -95,7 +109,7 @@ function displayData(filteredMovies) {
         `<div class="text-center">
             <h2>${title}</h2>
             <img src="${poster}" alt="${title}" width="250" height="300">
-            <h3>IMDB Rating: ${imdb}</h3>
+            <h3>IMDB Rating: ${imdbRating[i]}</h3>
         </div>`)
 
         // console.log(title);
