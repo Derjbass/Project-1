@@ -11,10 +11,9 @@ $('#btn').on('click', function (event) {
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
-    console.log(movieName);
 
     fetchMovieData(movieName);
-    fetchYtData(movieName);
+    // fetchYtData(movieName);
 
 
 })
@@ -27,15 +26,12 @@ async function fetchMovieData(movie) {
     const ottData = await ottResponse.json();
 
     storeOttData(ottData);
-
-    return ottData;
 }
 async function fetchYtData(movie) {
     const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
 
     const ytResponse = await fetch(ytUrl);
     const ytData = await ytResponse.json();
-    console.log(ytData);
 
     storeYtData(ytData);
 
@@ -48,18 +44,42 @@ async function fetchYtData(movie) {
 
 //function to store needed retrieved data
 function storeOttData(ottData) {
-    console.log(ottData);
+    displayData(ottData);
 }
 
 function storeYtData(ytData) {
     trailerId = ytData.items[0].id.videoId
-    console.log('https://www.youtube.com/watch?v=' + trailerId);
-    return console.log(ytData.items[0].id.videoId);
+    // console.log('https://www.youtube.com/watch?v=' + trailerId);
+    // return console.log(ytData.items[0].id.videoId);
 }
 
 //function to display data
-function displayData(toDisplay) {
-    return;
+function displayData(ottData) {
+    console.log(ottData);
+
+    for (var i = 0; i < ottData.results.length; i++) {
+        console.log(i);
+        var title = ottData.results[i].title;
+        // var poster = ottData.results[i].imageurl[0];
+        var imdb = 'test';
+
+        try {
+            var poster = ottData.results[i].imageurl[0]
+        } catch (error) {
+            var poster = '#';
+        }
+
+        $(".movie-card").append(
+        `<div class="text-center">
+            <h2>${title}</h2>
+            <img src="${poster}" alt="${title}" width="250" height="300">
+            <h3>IMDB Rating: ${imdb}</h3>
+        </div>`)
+
+        console.log(title);
+        console.log(poster);
+    }
+    
 }
 
 
