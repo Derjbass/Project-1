@@ -15,7 +15,6 @@ $('#btn').on('click', function (event) {
     //add input field value to variable for fetch later
     movieName = $('input').val();
     fetchMovieData(movieName);
-    // fetchYtData(movieName);
 
 
 })
@@ -43,25 +42,8 @@ async function fetchMovieData(movie) {
         imdbID[i] = filteredMovies[i].imdbid;
         // console.log(imdbID);
     }
-    
 
-    // console.log(filteredMovies);
-
-    storeOttData(filteredMovies);
-}
-
-async function fetchYtData(movie) {
-    const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
-
-    const ytResponse = await fetch(ytUrl);
-    const ytData = await ytResponse.json();
-
-    storeYtData(ytData);
-
-    return ytData;
-}
-
-async function fetchImbdData(filteredMovies) {
+    //fetch imdb rating data
     for (let i = 0; i < filteredMovies.length; i++) {
         let imbdIDUrl = `https://ott-details.p.rapidapi.com/gettitleDetails?rapidapi-key=${ottApiKey}&imdbid=${filteredMovies[i]}`;
         let imdbIDResponse = await fetch(imbdIDUrl);
@@ -69,28 +51,22 @@ async function fetchImbdData(filteredMovies) {
 
         imdbRating[i] = imdbData.imdbrating;
     }
+    
+    //fetch youtube trailer video ID
+    const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
 
+    const ytResponse = await fetch(ytUrl);
+    const ytData = await ytResponse.json();
 
-}
-
-
-
-
-
-//function to store needed retrieved data
-function storeOttData(filteredMovies) {
-    console.log(filteredMovies);
-    displayData(filteredMovies);
-}
-
-function storeYtData(ytData) {
     trailerId = ytData.items[0].id.videoId
-    //console.log('https://www.youtube.com/watch?v=' + trailerId);
-    //return console.log(ytData.items[0].id.videoId);
+
+    // console.log(filteredMovies);
+
+    displayData(filteredMovies, imdbRating, trailerId);
 }
 
 //function to display data
-function displayData(filteredMovies) {
+function displayData(filteredMovies, rating, id) {
     console.log(filteredMovies);
 
     for (var i = 0; i < filteredMovies.length; i++) {
@@ -109,7 +85,10 @@ function displayData(filteredMovies) {
         `<div class="text-center">
             <h2>${title}</h2>
             <img src="${poster}" alt="${title}" width="250" height="300">
-            <h3>IMDB Rating: ${imdbRating[i]}</h3>
+            <h3>IMDB Rating: ${rating[i]}</h3>
+            <iframe width="420" height="315"
+            src="https://www.youtube.com/embed/${id}">
+            </iframe> 
         </div>`)
 
         // console.log(title);
