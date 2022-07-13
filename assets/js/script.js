@@ -1,4 +1,4 @@
-var movieName, trailerId;
+var movieName, trailerId, video;
 var imdbID = [];
 var imdbRating = [];
 var ytLink = 'https://www.youtube.com/watch?v=';
@@ -14,6 +14,7 @@ $('#btn').on('click', function (event) {
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
+    fetchYtData(movieName);
     fetchMovieData(movieName);
 
 
@@ -62,9 +63,11 @@ async function fetchMovieData(movie) {
 
     // console.log(filteredMovies);
 
-    displayData(filteredMovies, imdbRating, trailerId);
-}
 
+    displayData(filteredMovies, imdbRating, trailerId);
+
+}
+console.log(video);
 //function to display data
 function displayData(filteredMovies, rating, id) {
     console.log(filteredMovies);
@@ -78,17 +81,18 @@ function displayData(filteredMovies, rating, id) {
         try {
             var poster = filteredMovies[i].imageurl[0]
         } catch (error) {
-            var poster = '#';
+            var poster = './assets/images/no-image-icon-23500.jpg';
         }
 
-        $(".movie-card").append(
-        `<div class="text-center">
+        $("#display-results-here").append(
+        `<div class="text-center movie-card">
             <h2>${title}</h2>
             <img src="${poster}" alt="${title}" width="250" height="300">
             <h3>IMDB Rating: ${rating[i]}</h3>
             <iframe width="420" height="315"
             src="https://www.youtube.com/embed/${id}">
             </iframe> 
+
         </div>`)
 
         // console.log(title);
