@@ -1,8 +1,9 @@
-var movieName, trailerId;
+var movieName, trailerId, video;
 var imdbID = [];
+var imdbRating = [];
 var ytLink = 'https://www.youtube.com/watch?v=';
 const ytApiKey = 'AIzaSyAKW-rzHMOU-ibu6PVKf5Swwy0W9cptcEY';
-const ottApiKey = '7c8e1ebcafmsh714464ccf2b4b99p19981bjsnbf6b11fcce3e'
+const ottApiKey = '3ddad456f1msh0fd6c81a3fb6472p195307jsn56362d1f8c52'
 
 //search button listener
 $('#btn').on('click', function (event) {
@@ -13,10 +14,8 @@ $('#btn').on('click', function (event) {
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
-    //console.log(movieName);
-
+    fetchYtData(movieName);
     fetchMovieData(movieName);
-    // fetchYtData(movieName);
 
 
 })
@@ -29,79 +28,75 @@ async function fetchMovieData(movie) {
     const ottData = await ottResponse.json();
     //filter out movies that don't match the first word or first and second word
     const filteredMovies = ottData.results.filter(function (movie){
-        console.log(movieName.split(' ').length - 1);
+        // console.log(movieName.split(' ').length - 1);
         //console.log(movieName.split(' ')[movie.title.split(' ').length - 1].toLowerCase());
         if(movie.title.split(' ')[0].toLowerCase() === movieName.split(' ')[0].toLowerCase() && movie.title.split(' ')[movieName.split(' ').length - 1].toLowerCase() === movieName.split(' ')[movieName.split(' ').length - 1].toLowerCase()){
-            console.log('movie.title.length', movie.title.split(' ').length - 1);
+            // console.log('movie.title.length', movie.title.split(' ').length - 1);
             return movie;
         }else if(movie.title.split(' ')[0].toLowerCase() === movieName.split(' ')[0].toLowerCase()){
             return movie;
         }
-    }).slice(0,10);
+    }).slice(0,3);
 
     //get IDs for full array
     for (i = 0; i < filteredMovies.length; i++){
         imdbID[i] = filteredMovies[i].imdbid;
-        console.log(imdbID);
+        // console.log(imdbID);
     }
     
-
-    console.log(filteredMovies);
-
-    storeOttData(ottData);
-}
-async function fetchYtData(movie) {
+    //fetch youtube trailer video ID
     const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
 
     const ytResponse = await fetch(ytUrl);
     const ytData = await ytResponse.json();
-    //console.log(ytData);
 
-    storeYtData(ytData);
-
-    return ytData;
-}
-
-
-
-
-
-//function to store needed retrieved data
-function storeOttData(ottData) {
-    displayData(ottData);
-}
-
-function storeYtData(ytData) {
     trailerId = ytData.items[0].id.videoId
-    //console.log('https://www.youtube.com/watch?v=' + trailerId);
-    //return console.log(ytData.items[0].id.videoId);
+
+    //fetch imdb rating data
+    for (let i = 0; i < filteredMovies.length; i++) {
+        let imbdIDUrl = `https://ott-details.p.rapidapi.com/gettitleDetails?rapidapi-key=${ottApiKey}&imdbid=${imdbID[i]}`;
+        let imdbIDResponse = await fetch(imbdIDUrl);
+        let imdbData = await imdbIDResponse.json();
+
+        imdbRating[i] = imdbData.imdbrating;
+    }
+
+    // console.log(filteredMovies);
+
+
+    displayData(filteredMovies, imdbRating, trailerId);
+
 }
-
+console.log(video);
 //function to display data
-function displayData(ottData) {
-    console.log(ottData);
+function displayData(filteredMovies, rating, id) {
+    console.log(filteredMovies);
 
-    for (var i = 0; i < ottData.results.length; i++) {
-        console.log(i);
-        var title = ottData.results[i].title;
+    for (var i = 0; i < filteredMovies.length; i++) {
+        // console.log(i);
+        var title = filteredMovies[i].title;
         // var poster = ottData.results[i].imageurl[0];
         var imdb = 'test';
 
         try {
-            var poster = ottData.results[i].imageurl[0]
+            var poster = filteredMovies[i].imageurl[0]
         } catch (error) {
-            var poster = '#';
+            var poster = './assets/images/no-image-icon-23500.jpg';
         }
 
-        $(".movie-card").append(
-        `<div class="text-center">
+        $("#display-results-here").append(
+        `<div class="text-center movie-card">
             <h2>${title}</h2>
             <img src="${poster}" alt="${title}" width="250" height="300">
-            <h3>IMDB Rating: ${imdb}</h3>
+            <h3>IMDB Rating: ${rating[i]}</h3>
+            <iframe width="420" height="315"
+            src="https://www.youtube.com/embed/${id}">
+            </iframe> 
+
         </div>`)
 
-        console.log(title);
-        console.log(poster);
+        // console.log(title);
+        // console.log(poster);
     }
     
 }
