@@ -12,7 +12,6 @@ let filteredMovies;
 $('#btn').on('click', function (event) {
     //stop page refresh when search button is clicked
     event.preventDefault();
-    console.log("click");
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
@@ -34,7 +33,6 @@ async function fetchMovieData(movie) {
 
     //filter out movies that don't match the first word or first and second word
     filteredMovies = ottData.results.filter(function (movie) {
-
         if (movie.title.split(' ')[0].toLowerCase() === movieName.split(' ')[0].toLowerCase() && movie.title.split(' ')[movieName.split(' ').length - 1].toLowerCase() === movieName.split(' ')[movieName.split(' ').length - 1].toLowerCase()) {
             return movie;
         } else if (movie.title.split(' ')[0].toLowerCase() === movieName.split(' ')[0].toLowerCase()) {
@@ -61,7 +59,6 @@ async function fetchMovieData(movie) {
         var imdbIDResponse = await fetch(imbdIDUrl);
         var imdbData = await imdbIDResponse.json();
         imdbRating.push(imdbData.imdbrating);
-        console.log(imdbData.imdbrating);
 
         if (imdbData.imdbrating) {
             displayData(index, imdbRating[index], trailerId[index]);
@@ -97,7 +94,6 @@ function displayData(index, rating, id) {
             <iframe width="420" height="315"
             src="https://www.youtube.com/embed/${id}">
             </iframe> 
-
         </div>`)
 
     var storageObj = {
@@ -113,7 +109,6 @@ function displayData(index, rating, id) {
 
 function showLastSearch() {
     var lastSearch = JSON.parse(localStorage.getItem("Search History"));
-    
     for (var i = 0; i < lastSearch.length; i++) {
         $("#display-results-here").append(
             `<div class="text-center movie-card">
@@ -123,7 +118,6 @@ function showLastSearch() {
             <iframe width="420" height="315"
             src="${lastSearch[i].trailer}">
             </iframe> 
-
         </div>`)
     }
 }
