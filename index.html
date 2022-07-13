@@ -26,13 +26,18 @@
         }
       </style>
     <title>Movie Channel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.4/css/foundation.min.css" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 
 <body>
     <header class="p-10 w-100 bg-slate-900 text-white flex justify-between">
-        <h1>Movie Channel</h1>
+        <div>
+            <h1 class="text-4xl font-serif" ><i class="fa-solid fa-clapperboard text-6xl"></i> Movie Channel</h1>
+            <p id="underTittle" class="text-center flex-container align-spaced">Bring Youtube's Best Cinema To You</p>
+        </div>
+
         <nav>
             <ul class="flex">
                 <li class="mx-5">Home</li>
@@ -42,17 +47,39 @@
     </header>
     <main class="bg-slate-800">
         <section id="search-bar">
-            <form class="text-center">
+            <div class="text-center">
                 <input text="text" placeholder="Enter Movie Name">
                 <button id="btn">Search</button>
-            </form>
+            </div>
         </section>
         </section>
         <section id="search-results" class="margin-top-1 flex-container align-spaced">
-            <div class="text-center movie-card" id="test-movie-card">
+            <!-- <div class="text-center movie-card w-300 w-px flex" id="test-movie-card">
                 <h2>Title #1</h2>
                 <img src="https://api.lorem.space/image/movie?w=150&h=220" alt="Title #1" width="250" height="300">
-                <h3>IMDB Rating:</h3>
+                <h3>Overview: Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, suscipit atque aliquam explicabo dolorem voluptatibus ad ratione eos officia tempore odit ea officiis tenetur pariatur quo quaerat? Ullam, iusto quaerat!</h3>
+            </div> -->
+
+            <div class="border movie-card bg-red-50">
+                <h2 class="p-2">Title</h2>
+                <div class="flex items-end" >
+                    <div class="movie-image" style="background-image: url(https://api.lorem.space/image/movie?w=150&h=220);">
+                       
+                    </div>
+                    <p class="p-2">Rating: 8.5</p>
+                </div>
+                <h3 class="p-2">Overview: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium illum rerum, natus molestiae aperiam alias beatae eum amet modi. Impedit laudantium repellat vel, sit est quisquam rem laborum error dolorem.</h3>
+            </div>
+
+            <div class="border movie-card bg-red-50">
+                <h2 class="p-2">Title</h2>
+                <div class="flex items-end" >
+                    <div class="movie-image" style="background-image: url(https://api.lorem.space/image/movie?w=150&h=220);">
+                       
+                    </div>
+                    <p class="p-2">Rating: 8.5</p>
+                </div>
+                <h3 class="p-2">Overview: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium illum rerum, natus molestiae aperiam alias beatae eum amet modi. Impedit laudantium repellat vel, sit est quisquam rem laborum error dolorem.</h3>
             </div>
         </section>
     </main>
@@ -83,10 +110,10 @@
     </section>
     <section id="search-results" class="margin-top-1 align-spaced">
         <div class ="flex-container" id="display-results-here"></div>
-    </section>
+    </section>-->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
 </body>
 
 </html>
