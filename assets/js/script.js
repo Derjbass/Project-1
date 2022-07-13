@@ -42,15 +42,6 @@ async function fetchMovieData(movie) {
         imdbID[i] = filteredMovies[i].imdbid;
         // console.log(imdbID);
     }
-
-    //fetch imdb rating data
-    for (let i = 0; i < filteredMovies.length; i++) {
-        let imbdIDUrl = `https://ott-details.p.rapidapi.com/gettitleDetails?rapidapi-key=${ottApiKey}&imdbid=${filteredMovies[i]}`;
-        let imdbIDResponse = await fetch(imbdIDUrl);
-        let imdbData = await imdbIDResponse.json();
-
-        imdbRating[i] = imdbData.imdbrating;
-    }
     
     //fetch youtube trailer video ID
     const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
@@ -59,6 +50,15 @@ async function fetchMovieData(movie) {
     const ytData = await ytResponse.json();
 
     trailerId = ytData.items[0].id.videoId
+
+    //fetch imdb rating data
+    for (let i = 0; i < filteredMovies.length; i++) {
+        let imbdIDUrl = `https://ott-details.p.rapidapi.com/gettitleDetails?rapidapi-key=${ottApiKey}&imdbid=${imdbID[i]}`;
+        let imdbIDResponse = await fetch(imbdIDUrl);
+        let imdbData = await imdbIDResponse.json();
+
+        imdbRating[i] = imdbData.imdbrating;
+    }
 
     // console.log(filteredMovies);
 
