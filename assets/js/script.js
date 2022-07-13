@@ -13,10 +13,7 @@ $('#btn').on('click', function (event) {
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
-<<<<<<< HEAD
     //console.log(movieName);
-=======
->>>>>>> main
 
     fetchMovieData(movieName);
     // fetchYtData(movieName);
@@ -58,10 +55,7 @@ async function fetchYtData(movie) {
 
     const ytResponse = await fetch(ytUrl);
     const ytData = await ytResponse.json();
-<<<<<<< HEAD
     //console.log(ytData);
-=======
->>>>>>> main
 
     storeYtData(ytData);
 
@@ -79,13 +73,8 @@ function storeOttData(ottData) {
 
 function storeYtData(ytData) {
     trailerId = ytData.items[0].id.videoId
-<<<<<<< HEAD
     //console.log('https://www.youtube.com/watch?v=' + trailerId);
     //return console.log(ytData.items[0].id.videoId);
-=======
-    // console.log('https://www.youtube.com/watch?v=' + trailerId);
-    // return console.log(ytData.items[0].id.videoId);
->>>>>>> main
 }
 
 //function to display data
@@ -116,4 +105,6 @@ function displayData(ottData) {
     }
     
 }
+
+
 
