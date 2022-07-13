@@ -1,4 +1,5 @@
-var movieName, trailerId;
+var movieName;
+var trailerId = [];
 var imdbID = [];
 var imdbRating = [];
 var ytLink = 'https://www.youtube.com/watch?v=';
@@ -44,10 +45,12 @@ async function fetchMovieData(movie) {
     }
     
     //fetch youtube trailer video ID
-    const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${movie + ' trailer'}`;
-
-    const ytResponse = await fetch(ytUrl);
-    const ytData = await ytResponse.json();
+    for (i = 0; i < filteredMovies.length; i++){
+        const ytUrl = `https://www.googleapis.com/youtube/v3/search?key=${ytApiKey}&type=video&part=snippet&q=${filteredMovies[i].title} + ' trailer'}`;
+        const ytResponse = await fetch(ytUrl);
+        const ytData = await ytResponse.json();
+        trailerId[i] = ytData.items[0].id.videoId
+    }
 
     trailerId = ytData.items[0].id.videoId
 
@@ -87,7 +90,7 @@ function displayData(filteredMovies, rating, id) {
             <img src="${poster}" alt="${title}" width="250" height="300">
             <h3>IMDB Rating: ${rating[i]}</h3>
             <iframe width="420" height="315"
-            src="https://www.youtube.com/embed/${id}">
+            src="https://www.youtube.com/embed/${id[i]}">
             </iframe> 
         </div>`)
 
