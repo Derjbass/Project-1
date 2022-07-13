@@ -108,3 +108,5 @@ function displayData(index, rating, id) {
         </div>`)
 }
 
+
+

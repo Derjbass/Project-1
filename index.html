@@ -1,17 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Working Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            },
+            darkMode: 'class',
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+          .content-auto {
+            content-visibility: auto;
+          }
+        }
+      </style>
+    <title>Movie Channel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.7.4/css/foundation.min.css" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 
 <body>
-    <h1 class="text-center" >Working Title</h1>
+    <header class="p-10 w-100 bg-slate-900 text-white flex justify-between">
+        <div>
+            <h1 class="text-4xl font-serif" ><i class="fa-solid fa-clapperboard text-6xl"></i> Movie Channel</h1>
+            <p id="underTittle" class="text-center flex-container align-spaced">Bring Youtube's Best Cinema To You</p>
+        </div>
+
+        <nav>
+            <ul class="flex">
+                <li class="mx-5">Home</li>
+                <li class="mx-5">About</li>
+            </ul>
+        </nav>
+    </header>
+    <main class="bg-slate-800">
+        <section id="search-bar">
+            <div class="text-center">
+                <input text="text" placeholder="Enter Movie Name">
+                <button id="btn">Search</button>
+            </div>
+        </section>
+        </section>
+        <section id="search-results" class="margin-top-1 flex-container align-spaced">
+            <!-- <div class="text-center movie-card w-300 w-px flex" id="test-movie-card">
+                <h2>Title #1</h2>
+                <img src="https://api.lorem.space/image/movie?w=150&h=220" alt="Title #1" width="250" height="300">
+                <h3>Overview: Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, suscipit atque aliquam explicabo dolorem voluptatibus ad ratione eos officia tempore odit ea officiis tenetur pariatur quo quaerat? Ullam, iusto quaerat!</h3>
+            </div> -->
+
+            <div class="border movie-card bg-red-50">
+                <h2 class="p-2">Title</h2>
+                <div class="flex items-end" >
+                    <div class="movie-image" style="background-image: url(https://api.lorem.space/image/movie?w=150&h=220);">
+                       
+                    </div>
+                    <p class="p-2">Rating: 8.5</p>
+                </div>
+                <h3 class="p-2">Overview: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium illum rerum, natus molestiae aperiam alias beatae eum amet modi. Impedit laudantium repellat vel, sit est quisquam rem laborum error dolorem.</h3>
+            </div>
+
+            <div class="border movie-card bg-red-50">
+                <h2 class="p-2">Title</h2>
+                <div class="flex items-end" >
+                    <div class="movie-image" style="background-image: url(https://api.lorem.space/image/movie?w=150&h=220);">
+                       
+                    </div>
+                    <p class="p-2">Rating: 8.5</p>
+                </div>
+                <h3 class="p-2">Overview: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium illum rerum, natus molestiae aperiam alias beatae eum amet modi. Impedit laudantium repellat vel, sit est quisquam rem laborum error dolorem.</h3>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+
+
+    <!-- <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
+        <div>
+          <span class="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
+            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><!-- ... --></svg>
+    <!-- </span> -->
+    <!-- </div>
+        <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">Writes Upside-Down</h3>
+        <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+          The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
+        </p>
+      </div> -->
+
+    <!-- <h1 class="text-center">Movie Channel</h1>
+    <p id="underTittle" class="text-center flex-container align-spaced">Bring Youtube's Best Cinema To You</p>
     <section id="search-bar">
         <form class="text-center">
             <input text="text" placeholder="Enter Movie Name">
@@ -20,10 +110,10 @@
     </section>
     <section id="search-results" class="margin-top-1 align-spaced">
         <div class ="flex-container" id="display-results-here"></div>
-    </section>
+    </section>-->
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/script.js"></script> -->
 </body>
 
 </html>
