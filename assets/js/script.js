@@ -2,6 +2,7 @@ var movieName;
 var trailerId = [];
 var imdbID = [];
 var imdbRating = [];
+var searchHistory = [];
 var ytLink = 'https://www.youtube.com/watch?v=';
 const ytApiKey = 'AIzaSyBZ4n5tgZISeBzztKLEue0Ap8w8lAl5XE8';
 const ottApiKey = 'bcf969b618msh00f834b35745ea6p1b0e5djsnf105dedaa30c'
@@ -18,7 +19,6 @@ $('#btn').on('click', function (event) {
     movieName = $('input').val();
     fetchMovieData(movieName);
 
-
 })
 
 //function to make API call
@@ -26,6 +26,7 @@ async function fetchMovieData(movie) {
     const ottUrl = `https://ott-details.p.rapidapi.com/search?rapidapi-key=${ottApiKey}&title=${movie}`;
     const ottResponse = await fetch(ottUrl);
     const ottData = await ottResponse.json();
+
     //reset arrays
     imdbRating = [];
     imdbID = [];
@@ -88,6 +89,8 @@ function displayData(index, rating, id) {
     console.log('index: ' + index, rating, id);
 
     var title = filteredMovies[index].title;
+    
+
         // var poster = ottData.results[i].imageurl[0];
 
         try {
@@ -106,5 +109,32 @@ function displayData(index, rating, id) {
             </iframe> 
 
         </div>`)
+
+        var storageObj = {
+            title: title,
+            poster: poster,
+            rating: rating,
+            trailer: `https://www.youtube.com/embed/${id}`
+        }
+        window.localStorage.clear();
+        searchHistory.push(storageObj);
+        localStorage.setItem("Search History", JSON.stringify(searchHistory));
 }
 
+function showLastSearch() {
+    var lastSearch = JSON.parse(localStorage.getItem("Search History"));
+    console.log(lastSearch);
+    for (var i = 0; i < lastSearch.length; i++){
+        $("#display-results-here").append(
+        `<div class="text-center movie-card">
+            <h2>${lastSearch[i].title}</h2>
+            <img src="${lastSearch[i].poster}" alt="${lastSearch[i].title}" width="250" height="300">
+            <h3>IMDB Rating: ${lastSearch[i].rating}</h3>
+            <iframe width="420" height="315"
+            src="${lastSearch[i].trailer}">
+            </iframe> 
+
+        </div>`)}
+}
+
+showLastSearch();
