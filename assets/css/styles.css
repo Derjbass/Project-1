@@ -23,3 +23,36 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+  #bg {
+      background: rgb(17, 17, 23);
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
+      width: 100%;
+      text-align: left;
+      font: bold 16px sans-serif;
+      padding: 25px 25px;
+      display: flex;
+      justify-content: space-evenly
+  }
+  #ig {
+    justify-content: space-between;
+    background: rgb(17, 17, 23);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+
+  }
+  #legal__links {
+    background: rgb(17, 17, 23);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    font: bold 16px sans-serif;}
+  
+ 
+
+  
+  
+  
