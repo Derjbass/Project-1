@@ -15,6 +15,7 @@ $('#btn').on('click', function (event) {
 
     //add input field value to variable for fetch later
     movieName = $('input').val();
+    console.log(movieName);
     fetchMovieData(movieName);
 
 })
@@ -77,7 +78,6 @@ async function fetchMovieData(movie) {
 
 //function to display data
 function displayData(index, rating, id) {
-
     var title = filteredMovies[index].title;
 
     try {
@@ -122,6 +122,4 @@ function showLastSearch() {
     }
 }
 
-
 showLastSearch();
-
