@@ -1,4 +1,15 @@
-#search-results, #search-bar {
+button#btn {
+    background: rgb(125 211 252);
+    border-radius: 5px;
+    padding: 0px 5px;
+}
+
+input {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#search-results {
     margin-top: 100px;
 } 
 
@@ -9,11 +20,24 @@
 
 .movie-card {
     width: 250px;
-    /* height: 300px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     padding: 5px;
+}
+
+.movie-card h2 {
+    color: rgb(125 211 252);
+    font-size: 24px;
+}
+
+.movie-card h3 {
+    color: gold;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 3px solid black;
+    margin-bottom: 15px;
 }
 
 .movie-image {
@@ -24,33 +48,33 @@
     background-size: cover;
 }
 
-  #bg {
-      background: rgb(17, 17, 23);
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-      box-sizing: border-box;
-      width: 100%;
-      text-align: left;
-      font: bold 16px sans-serif;
-      padding: 25px 25px;
-      display: flex;
-      justify-content: space-evenly
-  }
-  #ig {
+#bg {
+    background: rgb(17, 17, 23);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 25px 25px;
+    display: flex;
+    justify-content: space-evenly
+}
+#ig {
     justify-content: space-between;
     background: rgb(17, 17, 23);
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     width: 100%;
 
-  }
-  #legal__links {
+}
+#legal__links {
     background: rgb(17, 17, 23);
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     width: 100%;
     text-align: center;
     font: bold 16px sans-serif;}
-  
+
  
 
   
