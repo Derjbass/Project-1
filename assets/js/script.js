@@ -5,7 +5,7 @@ var imdbRating = [];
 var searchHistory = [];
 var ytLink = 'https://www.youtube.com/watch?v=';
 const ytApiKey = 'AIzaSyBZ4n5tgZISeBzztKLEue0Ap8w8lAl5XE8';
-const ottApiKey = '1ad9febe11msh92b2745fa5a97f6p1c51cbjsn0fbca5480e70'
+const ottApiKey = '64d95785fdmsh98dd46ccc6da9d9p16199bjsn99f7dee75b21'
 let filteredMovies;
 
 //search button listener
